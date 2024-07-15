@@ -5,11 +5,13 @@ import UsersRoutes from "./routes/users.js";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import dayjs from "dayjs";
-import CategoryRoutes from './routes/category.js'; 
+import CategoryRoutes from './routes/category.js';
+import cors from 'cors';
 
 const app = express();
 app.use(cookieParser()); // use cookiesParser
 app.use(express.json());
+app.use(cors());
 app.use('/api/todos', TodosRoutes)
 app.use('/api/users', UsersRoutes)
 app.use('/api/categories', CategoryRoutes)

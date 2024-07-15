@@ -1,5 +1,4 @@
 import Todo from "../models/todo.js";
-
 export const getAllTodo = async (request, response) => {
   try {
     const todos = await Todo.find({ user: request.user });
@@ -39,7 +38,7 @@ export const createTodo = async (request, response) => {
             description,
             completed: false,
             level,
-            deadline,
+            deadline: deadline,
             user: request.user,
             category
         })
