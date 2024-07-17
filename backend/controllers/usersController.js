@@ -1,6 +1,6 @@
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import Todo from "../models/todo.js";
 import {JWT_SECRET} from '../config.js';
 import Category from "../models/Category.js";
@@ -66,7 +66,7 @@ export const login = async(request, response)=> {
         if(!user){
             return response.status(404).json({message:"Invalid email"});
         }
-        const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = await bcryptjs.compare(password, user.password);
         if(!isMatch){
             return response.status(400).json({message:"invalid password"});
         }
