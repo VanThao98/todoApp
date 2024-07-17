@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import Todo from "../models/todo.js";
+import Todo from "../models/Todo.js";
 import User from "../models/User.js";
 import { SendEmailDeadline } from "../services/EmailService.js";
 
