@@ -1,5 +1,5 @@
 import Category from "../models/Category.js";
-import Todo from "../models/todo.js";
+import Todo from "../models/Todo.js";
 import { UpperFirstLetter } from "../utils/UpperFirstLetter.js";
 
 export const getAllCategory = async (request, response) => {
