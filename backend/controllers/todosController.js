@@ -1,4 +1,34 @@
+import dayjs from "dayjs";
 import Todo from "../models/todo.js";
+import User from "../models/User.js";
+import { SendEmailDeadline } from "../services/EmailService.js";
+
+export const checkAndSendDeadlineEmail = async () => {
+    try {
+        // Lấy tất cả các todos có deadline gần nhất
+        const todos = await Todo.find({
+            deadline: { $gte: dayjs().format('MM-DD-YYYY HH:mm') } // Lấy những todo có deadline lớn hơn hoặc bằng thời điểm hiện tại
+        });
+
+        // Duyệt qua từng todo để kiểm tra và gửi email
+        todos.forEach(async (todo) => {
+            // Tính toán khoảng cách thời gian giữa hiện tại và deadline của todo
+            const timeDiff = dayjs(todo.deadline, 'MM-DD-YYYY HH:mm').diff(dayjs(), 'hour'); // Ví dụ: tính theo giờ
+            console.log('thời gian hiện tại:', timeDiff);
+            // Nếu thời gian còn lại là ít hơn 24 giờ, bạn có thể gửi email thông báo
+            if (timeDiff <= 24 && timeDiff >= 0) {
+                // Gọi service để gửi email
+                console.log('đây là user email',todo.user);
+                const user = await User.findById(todo.user);
+                if (user && user.email) {
+                    console.log('đây là user email:', user.email);
+                    // await SendEmailDeadline(user.email, 'Deadline approaching', `Your todo "${todo.title}" is approaching its deadline "${todo.deadline}".`);
+             }}
+        });
+    } catch (error) {
+        console.error('Error checking and sending deadline emails:', error.message);
+    }
+};
 export const getAllTodo = async (request, response) => {
   try {
     const todos = await Todo.find({ user: request.user });

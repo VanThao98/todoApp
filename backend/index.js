@@ -7,11 +7,14 @@ import cookieParser from "cookie-parser";
 import dayjs from "dayjs";
 import CategoryRoutes from './routes/category.js';
 import cors from 'cors';
+import EmailsRoutes from './routes/email.js'
+import './schedules/cronJob.js'
 
 const app = express();
 app.use(cookieParser()); // use cookiesParser
 app.use(express.json());
 app.use(cors());
+app.use('/api/emails', EmailsRoutes)
 app.use('/api/todos', TodosRoutes)
 app.use('/api/users', UsersRoutes)
 app.use('/api/categories', CategoryRoutes)
@@ -22,14 +25,12 @@ app.get('/', (request, response) =>{
 
 mongoose
     .connect( mongoDB_url2)
-    .then(()=>{
+    .then(async ()=>{
         console.log("app connect to database");
         app.listen(PORT, ()=>{
             console.log(`app is listenning to PORT ${PORT}`);
-        })
-        // const utcTime = moment.tz('Asia/Ho_Chi_Minh').toDate();
+        });
         console.log(dayjs().format('YYYY-MM-DD HH:mm:ss'));
-        // console.log(moment.Date())
     })
     .catch((error)=>{
         console.log(error);
