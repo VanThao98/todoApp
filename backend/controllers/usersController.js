@@ -1,7 +1,7 @@
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import Todo from "../models/todo.js";
+import Todo from "../models/Todo.js";
 import {JWT_SECRET} from '../config.js';
 import Category from "../models/Category.js";
 
