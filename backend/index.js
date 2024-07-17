@@ -1,5 +1,4 @@
 import express from "express";
-import { PORT, mongoDB_url2 } from "./config.js";
 import TodosRoutes from "./routes/todos.js";
 import UsersRoutes from "./routes/users.js";
 import mongoose from "mongoose";
@@ -10,6 +9,7 @@ import cors from 'cors';
 import EmailsRoutes from './routes/email.js'
 import './schedules/cronJob.js'
 
+const port = process.env.PORT || 5000
 const app = express();
 app.use(cookieParser()); // use cookiesParser
 app.use(express.json());
@@ -24,11 +24,11 @@ app.get('/', (request, response) =>{
 })
 
 mongoose
-    .connect( mongoDB_url2)
+    .connect( process.env.mongoDB_url)
     .then(async ()=>{
         console.log("app connect to database");
-        app.listen(PORT, ()=>{
-            console.log(`app is listenning to PORT ${PORT}`);
+        app.listen(port, ()=>{
+            console.log(`app is listenning to PORT ${port}`);
         });
         console.log(dayjs().format('YYYY-MM-DD HH:mm:ss'));
     })
