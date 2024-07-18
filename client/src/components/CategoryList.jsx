@@ -43,7 +43,7 @@ export const CategoryList = ({ setFilterCategory, filterCategory }) => {
       }
     };
     fetchData();
-  }, [categories]);
+  }, [category]);
   return (
     <table>
       <thead></thead>
