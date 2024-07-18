@@ -1,9 +1,8 @@
-import axios from "axios";
-const API_URL = process.env.REACT_APP_API_URL;
+import axiosInstance from "../utils/axiosInstance";
 const API_TODO ="/api/todos"
 export const getAllTodo = async(e) => {
     try {
-        const result = await axios.get(`${API_URL}${API_TODO}`);
+        const result = await axiosInstance.get(`${API_TODO}`);
         return result;
     } catch (error) {
         return error;
@@ -12,7 +11,7 @@ export const getAllTodo = async(e) => {
 
 export const getOneTodo = async(id) => {
     try {
-        const result = await axios.get(`${API_URL}${API_TODO}/${id}`);
+        const result = await axiosInstance.get(`${API_TODO}/${id}`);
         return result;
     } catch (error) {
         return error;
@@ -21,7 +20,7 @@ export const getOneTodo = async(id) => {
 
 export const createTodo = async(todo) => {
     try {
-        const result = await axios.post(`${API_URL}${API_TODO}/create`,todo);
+        const result = await axiosInstance.post(`${API_TODO}/create`,todo);
         return result;
     } catch (error) {
         return error;
@@ -30,7 +29,7 @@ export const createTodo = async(todo) => {
 
 export const updateTodo = async(id,todo) => {
     try {
-        const result = await axios.put(`${API_URL}${API_TODO}/update/${id}`, todo);
+        const result = await axiosInstance.put(`${API_TODO}/update/${id}`, todo);
         return result;
     } catch (error) {
         return error;
@@ -39,7 +38,7 @@ export const updateTodo = async(id,todo) => {
 
 export const updateTodoCompleted = async(id,todo) => {
     try {
-        const result = await axios.put(`${API_URL}${API_TODO}/update/${id}/completed`, todo);
+        const result = await axiosInstance.put(`${API_TODO}/update/${id}/completed`, todo);
         return result;
     } catch (error) {
         return error;
@@ -48,7 +47,7 @@ export const updateTodoCompleted = async(id,todo) => {
 
 export const updateTodoDeadline = async(id,todo) => {
     try {
-        const result = await axios.put(`${API_URL}${API_TODO}/update/${id}/deadline`, todo);
+        const result = await axiosInstance.put(`${API_TODO}/update/${id}/deadline`, todo);
         return result;
     } catch (error) {
         return error;
@@ -57,7 +56,7 @@ export const updateTodoDeadline = async(id,todo) => {
 
 export const updateTodoLevel = async(id,todo) => {
     try {
-        const result = await axios.put(`${API_URL}${API_TODO}/update/${id}/level`, todo);
+        const result = await axiosInstance.put(`${API_TODO}/update/${id}/level`, todo);
         return result;
     } catch (error) {
         return error;
@@ -66,7 +65,7 @@ export const updateTodoLevel = async(id,todo) => {
 
 export const deleteAllTodo = async(e) => {
     try {
-        const result = await axios.delete(`${API_URL}${API_TODO}/delete/all`);
+        const result = await axiosInstance.delete(`${API_TODO}/delete/all`);
         return result;
     } catch (error) {
         return error;
@@ -75,7 +74,7 @@ export const deleteAllTodo = async(e) => {
 
 export const deleteOneTodo = async(id) => {
     try {
-        const result = await axios.delete(`${API_URL}${API_TODO}/delete/${id}`);
+        const result = await axiosInstance.delete(`${API_TODO}/delete/${id}`);
         return result;
     } catch (error) {
         return error;

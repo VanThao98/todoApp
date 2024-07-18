@@ -20,21 +20,21 @@ import { requestFCMToken } from "./utils/firebaseUtils";
 
 function App() {
   const {user, setUser} = useContext(UserContext);
-  const [fcmToken, setFcmToken] = useState(null);
+  // const [fcmToken, setFcmToken] = useState(null);
   
-  useEffect(() => {
-    const fetchFCMToken = async () => {
-      try {
-        console.log("Requesting FCM token...");
-        const token = await requestFCMToken();
-        setFcmToken(token);
-        console.log('FCM token: ', token);
-      } catch (error) {
-        console.error("Error fetching FCM token:", error);
-      }
-    };
-    fetchFCMToken();
-  }, []);
+  // useEffect(() => {
+  //   const fetchFCMToken = async () => {
+  //     try {
+  //       console.log("Requesting FCM token...");
+  //       const token = await requestFCMToken();
+  //       setFcmToken(token);
+  //       console.log('FCM token: ', token);
+  //     } catch (error) {
+  //       console.error("Error fetching FCM token:", error);
+  //     }
+  //   };
+  //   fetchFCMToken();
+  // }, []);
 
   useEffect(()=>{
     const fetchData = async() =>{

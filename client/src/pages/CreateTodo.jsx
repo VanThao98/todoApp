@@ -32,7 +32,7 @@ export const CreateTodo = () => {
             }
         }
         fetchData();
-    },[])
+    },[category])
 
   const handleSubmit = async(e) => {
     e.preventDefault();

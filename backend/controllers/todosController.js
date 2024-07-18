@@ -30,19 +30,19 @@ export const checkAndSendDeadlineEmail = async () => {
     }
 };
 export const getAllTodo = async (request, response) => {
-  try {
-    const todos = await Todo.find({ user: request.user });
-    if (todos.length === 0) {
-      return response.status(404).json({ message: "No to-do list created yet" });
+    try {
+        const todos = await Todo.find({ user: request.user });
+        if (todos.length === 0) {
+            return response.status(404).json({ message: "No to-do list created yet" });
+        }
+        return response.status(200).json({
+            count: todos.length,
+            data: todos,
+        });
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).json({ message: error.message });
     }
-    return response.status(200).json({
-      count: todos.length,
-      data: todos,
-    });
-  } catch (error) {
-    console.log(error.message);
-    response.status(500).json({ message: error.message });
-  }
 };
 export const getOneTodo = async (request, response) => {
     const {id} = request.params;

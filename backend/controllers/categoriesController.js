@@ -36,11 +36,11 @@ export const getOneCategory = async (request, response) => {
 export const createCategory = async (request, response) => {
     let {categoryName, description} = request.body;
     try {
+        categoryName = UpperFirstLetter(categoryName)
         const categoryCurrent = await Category.find({ user: request.user, categoryName : categoryName});
             if(categoryCurrent.length > 0){
                 return response.status(400).json({message:"category already exists"});
             }
-        categoryName = UpperFirstLetter(categoryName)
         const category = await Category.create({
             categoryName,
             description,

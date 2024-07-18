@@ -19,6 +19,8 @@ export const Login = () => {
     if(response.status === 200){
       alert('User Logged In');
       setUser(response.data.user);
+      // save Token
+      localStorage.setItem('token', JSON.stringify(response.data.token));
       navigate('/');
     }else{
       alert(response.response.data.message);
