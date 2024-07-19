@@ -19,11 +19,11 @@ export const LoggedInHome = () => {
         setNewCategory({ categoryName: "", description: "" });
         setShowForm(false); // Ẩn form sau khi thêm category
         const response = await getAllCategory();
-      if (response.status === 200) {
-        setCategories(response.data.data);
-      } else {
-        alert("Failed to fetch categories");
-      }
+        if (response.status === 200) {
+          setCategories(response.data.data);
+        } else {
+          alert("Failed to fetch categories");
+        }
       } else {
         alert(result.response.data.message);
       }

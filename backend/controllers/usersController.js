@@ -169,7 +169,7 @@ export const deleteUser = async(request, response)=> {
         }
         // delete categories relevant
         const categories = await Category.find({user: request.user});
-        console.log("ádsdcategdor:",categories);
+        console.log("delete-category:",categories);
         if(categories){
            await Category.deleteMany({user : request.user})
         }

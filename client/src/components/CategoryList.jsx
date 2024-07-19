@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { deleteOneCategory, getAllCategory } from "../api/Category";
 import { CategoryContext } from "../context/CategoryContext";
+import { TodoContext } from "../context/TodoConText";
 
 export const CategoryList = ({ setFilterCategory, filterCategory, categories, setCategories }) => {
   // const [categories, setCategories] = useState([]);
   const { category, setCategory } = useContext(CategoryContext);
   const [isHovered, setIsHovered] = useState(false);
+  const {todo, setTodo} = useContext(TodoContext);
 
   const handleMouseEnter = (id) => {
     setIsHovered(id);
@@ -23,6 +25,7 @@ export const CategoryList = ({ setFilterCategory, filterCategory, categories, se
         const response = await getAllCategory();
         if (response.status === 200) {
           setCategories(response.data.data);
+          setTodo((prevTodos) => prevTodos.filter(todo => todo.category !== item.categoryName));
         } else {
           alert("Failed to fetch categories");
         }
@@ -45,7 +48,7 @@ export const CategoryList = ({ setFilterCategory, filterCategory, categories, se
       }
     };
     fetchData();
-  }, []);
+  }, [todo]);
   return (
     <table>
       <thead></thead>
