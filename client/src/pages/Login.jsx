@@ -19,8 +19,13 @@ export const Login = () => {
     if(response.status === 200){
       alert('User Logged In');
       setUser(response.data.user);
+      // const expirationTime = new Date().getTime() + (60 * 60 * 1000);
+      const expirationTime = new Date().getTime() + (60 * 60 * 1000);
+      const token = response.data.token
       // save Token
-      localStorage.setItem('token', JSON.stringify(response.data.token));
+      localStorage.setItem('token', JSON.stringify(token));
+      localStorage.setItem('expirationTime', JSON.stringify(expirationTime));
+      console.log('Token-ngay sau login:', token);
       navigate('/');
     }else{
       alert(response.response.data.message);
@@ -28,8 +33,8 @@ export const Login = () => {
   }
 
   return (
-    <div className='w-1/4 m-auto text-center'>
-      <h1 className='text-3xl mb-3'>Login</h1>
+    <div className='relative bg-opacity-60 w-1/4 m-auto text-center border-x-2 border-b-2 border-white rounded-md mt-5 p-3 shadow-2xl shadow-white'>
+      <h1 className='text-3xl mb-3'>LOGIN</h1>
       <form className='' onSubmit={handleLogin}>
         <div className='mb-3'>
           <input type='email'
@@ -52,6 +57,7 @@ export const Login = () => {
           className='bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-blade font-bold text-2xl w-full rounded p-2'>
           Login
         </button>
+        <button onClick={()=>navigate('/')} className='text-violet-100 absolute -top-1 right-3 text-2xl font-bold'>x</button>
       </form>
     </div>
   )

@@ -12,9 +12,10 @@ export const Todolist = ({ filterCategory }) => {
       const response = await deleteOneTodo(item._id);
       if (response.status === 200) {
         alert(response.data.message);
-        const newTodo = {...todo};
-        delete newTodo[item._id];
-        setTodo(newTodo);
+        const updatedResponse = await getAllTodo();
+            if (updatedResponse.status === 200) {
+                setTodo(updatedResponse.data.data);
+            }
       } else {
         alert(response.response.data.message);
       }

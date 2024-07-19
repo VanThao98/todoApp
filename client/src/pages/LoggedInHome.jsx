@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Todolist } from '../components/Todolist'
 import { CategoryList } from '../components/CategoryList'
 import { useNavigate } from 'react-router-dom';
-import { createCategory } from '../api/Category';
+import { createCategory, getAllCategory } from '../api/Category';
 
 
 export const LoggedInHome = () => {
@@ -10,6 +10,7 @@ export const LoggedInHome = () => {
   const [filterCategory, setFilterCategory] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [newCategory, setNewCategory] = useState({ categoryName: "", description: "" });
+  const [categories, setCategories] = useState([]);
 
   const handleAddCategory = async () => {
     if (newCategory.categoryName.trim() && newCategory.description.trim()) {
@@ -17,6 +18,12 @@ export const LoggedInHome = () => {
       if (result.status === 201) {
         setNewCategory({ categoryName: "", description: "" });
         setShowForm(false); // Ẩn form sau khi thêm category
+        const response = await getAllCategory();
+      if (response.status === 200) {
+        setCategories(response.data.data);
+      } else {
+        alert("Failed to fetch categories");
+      }
       } else {
         alert(result.response.data.message);
       }
@@ -29,7 +36,7 @@ export const LoggedInHome = () => {
     <div className='flex m-2 px4'>
       <div className='w-1/6 mr-5 border-l-2 rounded-2xl text-center' >
         <h1 className='text-center text-3xl mb-4'>CATEGORY</h1>
-        <CategoryList setFilterCategory={setFilterCategory} filterCategory={filterCategory}/>
+        <CategoryList setFilterCategory={setFilterCategory} filterCategory={filterCategory} categories={categories} setCategories={setCategories}/>
         {showForm && (
           <div className="text-center p-2 mb-2 mt-2 w-full border rounded">
             <input 

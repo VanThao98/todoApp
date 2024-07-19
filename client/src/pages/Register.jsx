@@ -37,8 +37,8 @@ export const Register = () => {
   }  
 
   return (
-    <div className='w-1/4 m-auto text-center'>
-      <h1 className='text-3xl mb-3'>Register</h1>
+    <div className='relative bg-opacity-60 w-1/4 m-auto text-center border-x-2 border-b-2 border-white rounded-md mt-5 p-3 shadow-2xl shadow-white'>
+      <h1 className='text-3xl mb-3'>REGISTER</h1>
       <form className='' onSubmit={submitHandler}>
         <div className='mb-3'>
           <input type='text'
@@ -85,6 +85,7 @@ export const Register = () => {
           className='bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-blade font-bold text-2xl w-full rounded p-2'>
           Register
         </button>
+        <button onClick={()=>navigate('/user/login')} className='text-violet-100 absolute -top-1 right-3 text-2xl font-bold'>x</button>
       </form>
     </div>
   )

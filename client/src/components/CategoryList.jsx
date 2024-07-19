@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { deleteOneCategory, getAllCategory } from "../api/Category";
 import { CategoryContext } from "../context/CategoryContext";
 
-export const CategoryList = ({ setFilterCategory, filterCategory }) => {
-  const [categories, setCategories] = useState([]);
+export const CategoryList = ({ setFilterCategory, filterCategory, categories, setCategories }) => {
+  // const [categories, setCategories] = useState([]);
   const { category, setCategory } = useContext(CategoryContext);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -17,15 +17,17 @@ export const CategoryList = ({ setFilterCategory, filterCategory }) => {
 
   const deleteHandle = async (item) => {
     if (window.confirm("Are you sure?")) {
-      const response = await deleteOneCategory(item._id);
-      if (response.status === 200) {
-        alert(response.data.message);
-        const NewCategory = {...category};
-        // setCategory(category.filter((categoryItem) => categoryItem._id !== item._id));
-        delete NewCategory[item._id];
-        setCategory(NewCategory);
+      const delete_response = await deleteOneCategory(item._id);
+      if (delete_response.status === 200) {
+        alert(delete_response.data.message);
+        const response = await getAllCategory();
+        if (response.status === 200) {
+          setCategories(response.data.data);
+        } else {
+          alert("Failed to fetch categories");
+        }
       } else {
-        alert(response.response.data.message);
+        alert(delete_response.response.data.message);
       }
     }
   };
@@ -43,7 +45,7 @@ export const CategoryList = ({ setFilterCategory, filterCategory }) => {
       }
     };
     fetchData();
-  }, [category]);
+  }, []);
   return (
     <table>
       <thead></thead>

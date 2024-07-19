@@ -16,6 +16,8 @@ export const Profile = () => {
       alert("User Logged out");
       setUser({});
       setTodo({});
+      localStorage.removeItem('token');
+      localStorage.removeItem('expirationTime');
       navigate('/user/login')
     }
   }

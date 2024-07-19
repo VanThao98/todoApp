@@ -4,7 +4,6 @@ import { getOneTodo } from '../api/Todo';
 
 export const ViewTodo = () => {
     const [todo, setTodo] = useState('');
-
     const {id} = useParams();
     const navigate = useNavigate()
     useEffect(()=>{

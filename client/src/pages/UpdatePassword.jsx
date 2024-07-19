@@ -31,7 +31,7 @@ export const UpdatePassword = () => {
         }
     }
     return (
-        <div className='w-1/4 m-auto text-center'>
+        <div className='relative bg-opacity-60 w-1/4 m-auto text-center border-x-2 border-b-2 border-white rounded-md mt-5 p-3 shadow-2xl shadow-white'>
         <h1 className='text-3xl mb-3'>Change Password</h1>
             <form className='' onSubmit={submitHandler}>
             <div className='mb-3'>
@@ -63,6 +63,7 @@ export const UpdatePassword = () => {
                 className='bg-black text-white w-full rounded p-2'>
                 Update
                 </button>
+                <button onClick={()=>navigate('/user/profile')} className='text-violet-100 absolute -top-1 right-3 text-2xl font-bold'>x</button>
             </form>
         </div>
     )
