@@ -33,7 +33,7 @@ function App() {
     };
     fetchData();
   }, [setUser]);
-  
+
   useEffect(() => {
     function checkLoginStatus() {
       const token = localStorage.getItem("token");

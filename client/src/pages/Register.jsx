@@ -28,9 +28,8 @@ export const Register = () => {
 
     const response = await register(data);
     if(response.status === 201) {
-      setUser(response.data.user);
-      navigate('/user/login');
       alert("user registered successfully");
+      navigate('/user/login');
     }else{
       alert(response.response.data.message);
     }
@@ -39,7 +38,7 @@ export const Register = () => {
   return (
     <div className='relative bg-opacity-60 w-1/4 m-auto text-center border-x-2 border-b-2 border-white rounded-md mt-5 p-3 shadow-2xl shadow-white'>
       <h1 className='text-3xl mb-3'>REGISTER</h1>
-      <form className='' onSubmit={submitHandler}>
+      <form className='' >
         <div className='mb-3'>
           <input type='text'
             placeholder='Enter Name...'
@@ -82,6 +81,7 @@ export const Register = () => {
         </div>
         <button
           type='submit'
+          onClick={submitHandler}
           className='bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-blade font-bold text-2xl w-full rounded p-2'>
           Register
         </button>

@@ -58,6 +58,7 @@ export const Login = () => {
           Login
         </button>
         <button onClick={()=>navigate('/')} className='text-violet-100 absolute -top-1 right-3 text-2xl font-bold'>x</button>
+        <p>Do you have account? if not <button onClick={()=>navigate('/user/register')} className='text-sky-800 underline'>register</button></p>
       </form>
     </div>
   )
