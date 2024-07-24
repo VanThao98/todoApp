@@ -22,7 +22,7 @@ export const checkAndSendDeadlineEmail = async () => {
                 const user = await User.findById(todo.user);
                 if (user && user.email) {
                     console.log('đây là user email:', user.email);
-                    // await SendEmailDeadline(user.email, 'Deadline approaching', `Your todo "${todo.title}" is approaching its deadline "${todo.deadline}".`);
+                    await SendEmailDeadline(user.email, 'Deadline approaching', `Your todo "${todo.title}" is approaching its deadline "${todo.deadline}".`);
              }}
         });
     } catch (error) {
