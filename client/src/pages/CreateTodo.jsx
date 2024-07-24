@@ -82,7 +82,7 @@ export const CreateTodo = () => {
         <div className='flex justify-between'>
           <div className='mb-3 text-lg sm:text-2xl flex'>
             <p className='text-white'> Level: </p>
-            <select onChange={(e)=> setLevel(e.target.value)} className='ml-5 w-20 bg-none bg-blue-200 rounded outline-none opacity-80' value={level}>
+            <select onChange={(e)=> setLevel(e.target.value)} className='ml-2 w-20 bg-none bg-blue-200 rounded outline-none opacity-80' value={level}>
               <option className='bg-red-500' value='High'>High</option>
               <option className='bg-yellow-500' value='Medium'>Medium</option>
               <option className='bg-green-500' value='Low'>Low</option>
@@ -92,7 +92,7 @@ export const CreateTodo = () => {
             <p className='text-white'>Category: </p>
             <select
               onChange={(e) => setCategory(e.target.value)}
-              className='ml-5 w-32 bg-blue-200 rounded outline-none opacity-80'
+              className='ml-2 w-20 bg-blue-200 rounded outline-none opacity-80'
               value={category}
             >
               {categories.map((category) => (
