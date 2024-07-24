@@ -36,7 +36,7 @@ export const Register = () => {
   }  
 
   return (
-    <div className='relative bg-opacity-60 w-1/4 m-auto text-center border-x-2 border-b-2 border-white rounded-md mt-5 p-3 shadow-2xl shadow-white'>
+    <div className='relative bg-opacity-60 sm:w-1/2 md:w-2/4 lg:w-1/4 m-auto text-center sm:border-x-2 border-b-2 border-white rounded-md sm:mt-5 p-3 shadow-2xl shadow-white'>
       <h1 className='text-3xl mb-3'>REGISTER</h1>
       <form className='' >
         <div className='mb-3'>
@@ -85,7 +85,7 @@ export const Register = () => {
           className='bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-blade font-bold text-2xl w-full rounded p-2'>
           Register
         </button>
-        <button onClick={()=>navigate('/user/login')} className='text-violet-100 absolute -top-1 right-3 text-2xl font-bold'>x</button>
+        <button onClick={()=>navigate('/user/login')} className='text-violet-100 p-4 md:p-0 absolute -top-1 right-3 text-2xl font-bold'>x</button>
       </form>
     </div>
   )

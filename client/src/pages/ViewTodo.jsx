@@ -32,7 +32,7 @@ export const ViewTodo = () => {
                 </div>
                 {/* <p className='mt-3'>Updated: {todo.updatedAt}</p> */}
                 <h1 className='text-3xl text-center font-bold mt-4 opacity-35'>{todo.category}</h1>
-                <button onClick={()=>navigate('/')} className='text-violet-100 absolute -top-1 right-3 text-2xl font-bold'>x</button>
+                <button onClick={()=>navigate('/')} className='text-violet-100 p-4 md:p-0 absolute -top-1 right-3 text-2xl font-bold'>x</button>
             </div>
         }
     </div>

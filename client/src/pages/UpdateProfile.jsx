@@ -28,11 +28,12 @@ export const UpdateProfile = () => {
         }
     }
     return (
-        <div className='relative bg-opacity-60 w-4/12 m-auto text-center border-x-2 border-b-2 border-white rounded-md mt-5 p-3 shadow-2xl shadow-white'>
+        <div className='relative bg-opacity-60 sm:w-6/12 xl:w-1/3 2xl:w-1/4 m-auto text-center sm:border-x-2 border-b-2 border-white rounded-md sm:mt-5 p-3 shadow-2xl shadow-white'>
         <h1 className='text-3xl mb-3'>UPDATE</h1>
         <form className='' onSubmit={submitHandler}>
             <div className='mb-3'>
             <input type='text'
+                maxLength={10}
                 placeholder='Enter Name...'
                 className='focus:outline-none border-none p-2 rounded w-full'
                 value={name}
@@ -52,6 +53,7 @@ export const UpdateProfile = () => {
             <div className='mb-3'>
             <input
                 min={5}
+                max={100}
                 type='number'
                 placeholder='Enter Age...'
                 className='focus:outline-none border-none p-2 rounded w-full'
@@ -64,7 +66,7 @@ export const UpdateProfile = () => {
             className='bg-black text-white w-full rounded p-2'>
             Update
             </button>
-            <button onClick={()=>navigate('/user/profile')} className='text-violet-100 absolute -top-1 right-3 text-2xl font-bold'>x</button>
+            <button onClick={()=>navigate('/user/profile')} className='text-violet-100 p-4 md:p-0 absolute -top-1 right-3 text-2xl font-bold'>x</button>
         </form>
         </div>
     )

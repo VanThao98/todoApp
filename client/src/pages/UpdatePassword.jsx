@@ -31,11 +31,12 @@ export const UpdatePassword = () => {
         }
     }
     return (
-        <div className='relative bg-opacity-60 w-1/4 m-auto text-center border-x-2 border-b-2 border-white rounded-md mt-5 p-3 shadow-2xl shadow-white'>
+        <div className='relative bg-opacity-60 sm:w-3/4 md:w-2/4 lg:w-1/4 m-auto text-center sm:border-x-2 border-b-2 border-white rounded-md sm:mt-5 p-3 shadow-2xl shadow-white'>
         <h1 className='text-3xl mb-3'>Change Password</h1>
             <form className='' onSubmit={submitHandler}>
             <div className='mb-3'>
             <input type='password'
+                maxLength={30}
                 placeholder='Enter Current Password...'
                 className='focus:outline-none border-none p-2 rounded w-full'
                 value={currentPassword}
@@ -44,6 +45,7 @@ export const UpdatePassword = () => {
             </div>
             <div className='mb-3'>
             <input type='password'
+                maxLength={30}
                 placeholder='Enter New Password...'
                 className='focus:outline-none border-none p-2 rounded w-full'
                 value={password}
@@ -52,6 +54,7 @@ export const UpdatePassword = () => {
             </div>
             <div className='mb-3'>
             <input type='password'
+                maxLength={30}
                 placeholder='Confirm New Password...'
                 className='focus:outline-none border-none p-2 rounded w-full'
                 value={confirmPassword}
@@ -63,7 +66,7 @@ export const UpdatePassword = () => {
                 className='bg-black text-white w-full rounded p-2'>
                 Update
                 </button>
-                <button onClick={()=>navigate('/user/profile')} className='text-violet-100 absolute -top-1 right-3 text-2xl font-bold'>x</button>
+                <button onClick={()=>navigate('/user/profile')} className='text-violet-100 p-5 md:p-0 absolute -top-1 right-3 text-2xl font-bold'>x</button>
             </form>
         </div>
     )

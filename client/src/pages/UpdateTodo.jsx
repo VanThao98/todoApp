@@ -53,7 +53,7 @@ export const UpdateTodo = () => {
         }
     }
   return (
-    <div className='relative bg-opacity-60 w-4/12 m-auto text-center border-x-2 border-b-2 border-white rounded-md mt-5 p-3 shadow-2xl shadow-white'>
+    <div className='relative bg-opacity-60 sm:w-4/12 m-auto text-center sm:border-x-2 border-b-2 border-white rounded-md sm:mt-5 p-3 shadow-2xl shadow-white'>
       <h1 className='text-3xl mb-3 p-3 text-black font-bold shadow-xl'>UPDATE</h1>
       <form className='' onSubmit={handleSubmit}>
         <div className='mb-3 my-5 opacity-80'>
@@ -81,25 +81,25 @@ export const UpdateTodo = () => {
             <option className='' value='true'>Completed</option>
           </select>
         </div>
-        <div className='mb-3 flex text-2xl justify-between'>
+        <div className='mb-3 flex text-lg sm:text-2xl justify-between'>
           <p className='text-white'>Deadline : </p>
           <DateTimePicker format='MM-dd-yyyy HH:mm' onChange={setDeadline}
             value={deadline}/>
         </div>
         <div className='flex justify-between opacity-80'>
-          <div className='mb-3 text-2xl flex '>
-            <p className='text-white'> Level : </p>
-            <select onChange={(e)=> setLevel(e.target.value)} className='ml-5 bg-blue-200 rounded outline-none' value={level}>
+          <div className='mb-3 w-20 text-xl sm:text-2xl flex '>
+            <p className='text-white'> Level: </p>
+            <select onChange={(e)=> setLevel(e.target.value)} className='ml-5 bg-blue-200 rounded outline-none'  value={level}>
               <option className='bg-red-500' value='High'>High</option>
               <option className='bg-yellow-500' value='Medium'>Medium</option>
               <option className='bg-green-500' value='Low'>Low</option>
             </select>
           </div>
-          <div className='mb-3 text-2xl flex'>
-            <p className='text-white'>Category : </p>
+          <div className='mb-3 text-lg sm:text-2xl flex'>
+            <p className='text-white'>Category: </p>
             <select
               onChange={(e) => setCategory(e.target.value)}
-              className='ml-5 bg-blue-200 rounded outline-none'
+              className='ml-5 w-32 bg-blue-200 rounded outline-none'
               value={category}
             >
               {categories.map((category) => (
@@ -115,7 +115,7 @@ export const UpdateTodo = () => {
           className='bg-black text-white w-full rounded p-2'>
           Update
         </button>
-        <button onClick={()=>navigate('/')} className='text-violet-100 absolute -top-1 right-3 text-2xl font-bold'>x</button>
+        <button onClick={()=>navigate('/')} className='text-violet-100 p-4 md:p-0 absolute -top-1 right-3 text-2xl font-bold'>x</button>
       </form>
     </div>
   )

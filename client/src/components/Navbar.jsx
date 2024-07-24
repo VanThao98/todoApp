@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 const Navbar = ({ user }) => {
   return (
     <nav className="bg-black py-3 text-white flex justify-between items-center">
-      <h1 className="ml-5 font-bold text-2xl flex gap-4">
+      <h1 className="ml-5 font-bold md:text-2xl flex md:gap-4 gap-2 text-lg">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
-          className="size-8 text-pink-600"
+          className="size-7 md:size-8 text-pink-600"
         >
           <path
             fill-rule="evenodd"
@@ -43,7 +43,7 @@ const Navbar = ({ user }) => {
         {!user._id && (
           <>
             <li className="mr-3">
-              <Link className="hover:text-pink-500" to="/user/register">
+              <Link className="hidden sm:flex hover:text-pink-500" to="/user/register">
                 Register
               </Link>
             </li>

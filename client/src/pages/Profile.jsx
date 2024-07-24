@@ -40,17 +40,14 @@ export const Profile = () => {
   }
   
   return (
-    <div className='w-1/4 m-auto text-center'>
+    <div className='sm:w-1/2 md:w-2/3 lg:w-2/4 m-auto text-center'>
       <h1 className='text-3xl my-3 font-bold'>
         Profile
       </h1>
-      {/* <h2 className='text-red-500 text-3xl'>
-      {dayjs(user.createdAt).hour() }
-      </h2> */}
       <div className='mt-3'>
-        <h2 className='text-2xl flex justify-between'>Name: {user.name}</h2>
-        <h2 className='text-2xl flex justify-between'>Email: {user.email} </h2>
-        <h2 className='text-2xl flex justify-between'>Age: {user.age}</h2>
+        <h2 className='pl-2 text-2xl flex justify-between'>Name: {user.name}</h2>
+        <h2 className='pl-2 text-2xl flex justify-between'>Email: {user.email} </h2>
+        <h2 className='pl-2 text-2xl flex justify-between'>Age: {user.age}</h2>
       </div>
       <div className='mt-3'>
         <button className='bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500

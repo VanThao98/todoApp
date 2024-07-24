@@ -40,20 +40,19 @@ export const Todolist = ({ filterCategory }) => {
         filteredTodo.map((item) => {
           let bgLevel;
           if(item.level === "Low"){
-            bgLevel = "bg-black text-white";
+            bgLevel = "bg-slate-600 text-white";
           }else if (item.level === "Medium"){
-            bgLevel = "bg-yellow-500 text-sky-600"
+            bgLevel = "bg-lime-600 text-black"
           }else{bgLevel = "bg-red-500 opacity-100"}
           return (
-            <div className="opacity-95 shadow-lg shadow-black w-72 min-h-64 m-auto max-h-80 border-2 border-emerald-900 rounded-2xl relative bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">
+          <div className="shadow-lg bg shadow-black w-72 md:w-72 min-h-64 max-h-80 border-2 border-emerald-900 rounded-2xl relative bg-amber-400 hover:bg-gradient-to-r hover:from-pink-500 hover:to-yellow-500">
               <p className="text-3xl font-bold text-center my-3 mt-5">
                 {item.title}
               </p>
-              <textarea
+              <p               
                 readOnly
-                className="bg-inherit border border-x-0 border-emerald-900 border-none rounded-lg w-full px-2 min-h-20 outline-none"
-                value={`Desc: ${item.description}`}
-              ></textarea>
+                className="resize-none border border-x-0 border-emerald-900 border-none rounded-lg w-full px-2 min-h-20 outline-none"
+              >{`Desc: ${item.description}`}</p>
               <p className="font-semibold my-2 text m-2 mb-3">
                 Deadline: {item.deadline}
               </p>
@@ -64,7 +63,7 @@ export const Todolist = ({ filterCategory }) => {
                 <button
                   className={`${
                     item.completed ? "bg-lime-500" : "bg-red-500 opacity-80"
-                  } font-bold border p-1 rounded-xl`}
+                  } font-bold p-1 rounded-xl`}
                 >
                   {item.completed ? "Completed" : "Not Completed"}
                 </button>

@@ -57,7 +57,7 @@ export const CategoryList = ({ setFilterCategory, filterCategory, categories, se
           <hr />
           <button
             onClick={() => setFilterCategory(null)}
-            className={`text-xl hover:text-2xl p-4 ${
+            className={`text-xl hover:text-lg p-4 ${
               filterCategory === null
                 ? "text-red-500"
                 : "text-yellow-300 hover:text-red-500"
@@ -72,13 +72,13 @@ export const CategoryList = ({ setFilterCategory, filterCategory, categories, se
             return (
               <>
                 <tr key={item._id}>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between ">
                   <button
                     onClick={() => setFilterCategory(item.categoryName)}
-                    className={`text-xl hover:text-2xl p-4 ${
+                    className={`text-xl hover:text-2xl ease-in duration-300 p-4 ${
                       filterCategory === item.categoryName
                         ? "text-red-500"
-                        : "text-yellow-300 hover:text-red-500"
+                        : "text-yellow-300 hover:text-red-500 ease-in duration-300"
                     }`}
                   >
                     {item.categoryName}
@@ -87,7 +87,7 @@ export const CategoryList = ({ setFilterCategory, filterCategory, categories, se
                     onClick={()=>{deleteHandle(item)}}
                     onMouseEnter={()=>{handleMouseEnter(item._id)}}
                     onMouseLeave={handleMouseLeave}
-                    className={`${isHovered ? 'opacity-100' : 'opacity-5'} text-violet-100  text-2xl font-bold`}
+                    className={`${isHovered ? 'opacity-100' : 'opacity-100 lg:opacity-5 '} text-rose-200 px-5 lg:px-0 text-2xl font-bold`}
                   >
                     x
                   </button>
