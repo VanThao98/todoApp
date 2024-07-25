@@ -31,7 +31,7 @@ export const Profile = () => {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: 'Yes!',
       cancelButtonText: 'Cancel'
     }).then(async (result) => {
       if (result.isConfirmed) {
