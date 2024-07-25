@@ -3,6 +3,7 @@ import { Todolist } from '../components/Todolist'
 import { CategoryList } from '../components/CategoryList'
 import { useNavigate } from 'react-router-dom';
 import { createCategory, getAllCategory } from '../api/Category';
+import {toast} from 'react-toastify';
 
 
 export const LoggedInHome = () => {
@@ -17,19 +18,20 @@ export const LoggedInHome = () => {
     if (newCategory.categoryName.trim() && newCategory.description.trim()) {
       const result = await createCategory(newCategory);
       if (result.status === 201) {
+        toast.success('Created category')
         setNewCategory({ categoryName: "", description: "" });
         setShowForm(false); // Ẩn form sau khi thêm category
         const response = await getAllCategory();
         if (response.status === 200) {
           setCategories(response.data.data);
         } else {
-          alert("Failed to fetch categories");
+          toast.error("Failed to fetch categories");
         }
       } else {
-        alert(result.response.data.message);
+        toast.error(result.response.data.message);
       }
     } else {
-      alert("Category name and description cannot be empty");
+      toast.error("Category name and description cannot be empty");
     }
   };
   return (
@@ -85,7 +87,7 @@ export const LoggedInHome = () => {
       </div>
 
       <div className={`${showCategory? 'block':'hidden'} lg:hidden absolute w-full bg-black`}>
-          <div className='absolute w-screen h-screen bg-black opacity-50'></div>            
+          <div onClick={()=>setShowCategory(!showCategory)} className='absolute w-screen h-screen bg-black opacity-50'></div>            
           <div className='absolute w-full bg-black pt-5'>
           <button onClick={()=>setShowCategory(!showCategory)} className='text-violet-100 absolute -top-1 right-3 text-2xl font-bold hover:text-rose-600 ease-in duration-300 p-5'>x</button>           
           <CategoryList setFilterCategory={setFilterCategory} filterCategory={filterCategory} categories={categories} setCategories={setCategories}/>

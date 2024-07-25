@@ -17,7 +17,8 @@ import { UpdatePassword } from "./pages/UpdatePassword";
 import { ViewTodo } from "./pages/ViewTodo";
 import { UpdateTodo } from "./pages/UpdateTodo";
 import { TodoContext } from "./context/TodoConText";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   const { user, setUser } = useContext(UserContext);
   const { setTodo } = useContext(TodoContext);
@@ -50,12 +51,12 @@ function App() {
 
       if (currentTime - loginTime > thirtyMinutes) {
         // Đã quá 30 phút kể từ khi đăng nhập
-        alert("You have been logged in for 30 minutes, please login again.");
         setUser({});
         setTodo({});
         localStorage.removeItem("token");
         localStorage.removeItem("expirationTime");
         navigate("/user/login"); // Chuyển hướng đến trang đăng nhập
+        toast.warning("You have been logged in for 30 minutes, please login again.");
       }
     }
 
@@ -134,6 +135,17 @@ function App() {
             }
           />
         </Routes>
+        <ToastContainer 
+              position="top-center"
+              autoClose={2500} // 2.5 seconds
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="dark"/>
       </div>
     </>
   );

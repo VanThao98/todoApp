@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { deleteOneTodo } from '../api/Todo';
+import {toast} from 'react-toastify';
 
 export const TodoItem = ({item, setTodo, todo}) => {
     const navigate = useNavigate();
@@ -9,10 +10,10 @@ export const TodoItem = ({item, setTodo, todo}) => {
         if(window.confirm("Are you sure?")){
             const response = await deleteOneTodo(item._id);
             if(response.status === 200){
-                alert(response.data.message);
+                toast.success(response.data.message);
                 setTodo(todo.filter(todoItem => todoItem._id !== item._id));    
             }else{
-                alert(response.response.data.message);
+                toast.error(response.response.data.message);
             }    
         }
     }

@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { deleteOneCategory, getAllCategory } from "../api/Category";
 import { CategoryContext } from "../context/CategoryContext";
 import { TodoContext } from "../context/TodoConText";
-
+import {toast} from 'react-toastify';
+import Swal from 'sweetalert2';
 export const CategoryList = ({ setFilterCategory, filterCategory, categories, setCategories }) => {
   // const [categories, setCategories] = useState([]);
   const { category, setCategory } = useContext(CategoryContext);
@@ -18,21 +19,31 @@ export const CategoryList = ({ setFilterCategory, filterCategory, categories, se
   };
 
   const deleteHandle = async (item) => {
-    if (window.confirm("Are you sure?")) {
-      const delete_response = await deleteOneCategory(item._id);
-      if (delete_response.status === 200) {
-        alert(delete_response.data.message);
-        const response = await getAllCategory();
-        if (response.status === 200) {
-          setCategories(response.data.data);
-          setTodo((prevTodos) => prevTodos.filter(todo => todo.category !== item.categoryName));
+    Swal.fire({
+      title: 'Delete category?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const delete_response = await deleteOneCategory(item._id);
+        if (delete_response.status === 200) {
+          toast.success(delete_response.data.message);
+          const response = await getAllCategory();
+          if (response.status === 200) {
+            setCategories(response.data.data);
+            setTodo((prevTodos) => prevTodos.filter(todo => todo.category !== item.categoryName));
+          } else {
+            toast.error("Failed to fetch categories");
+          }
         } else {
-          alert("Failed to fetch categories");
+          toast.error(delete_response.response.data.message);
         }
-      } else {
-        alert(delete_response.response.data.message);
       }
-    }
+    });
   };
 
   useEffect(() => {

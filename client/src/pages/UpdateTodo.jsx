@@ -9,6 +9,7 @@ import 'react-clock/dist/Clock.css';
 import { format } from 'date-fns';
 import '../App.css'
 import { getAllCategory } from '../api/Category';
+import { toast } from 'react-toastify';
 export const UpdateTodo = () => {
     const {todo} = useContext(TodoContext);
     const {id} = useParams();
@@ -46,10 +47,10 @@ export const UpdateTodo = () => {
         }
         const response = await updateTodo(id,data);
         if(response.status === 200){
-            alert(response.data.message);
+            toast.success(response.data.message);
             navigate('/')
         }else{
-            alert(response.response.data.message);
+            toast.error(response.response.data.message);
         }
     }
   return (
@@ -65,7 +66,7 @@ export const UpdateTodo = () => {
           />
         </div>
         <div className='mb-3 opacity-80'>
-          <textarea minLength={10} maxLength={100} name="" id='' cols={30} 
+          <textarea maxLength={50} name="" id='' cols={30} 
             placeholder='Enter description...'
             className='focus:outline-none border-none p-2 rounded w-full bg-blue-200'
             value={description}

@@ -8,6 +8,7 @@ import 'react-clock/dist/Clock.css';
 import { format } from 'date-fns';
 import '../App.css'
 import { getAllCategory } from '../api/Category';
+import {toast} from 'react-toastify';
 export const CreateTodo = () => {
   
   const navigate = useNavigate();
@@ -45,15 +46,15 @@ export const CreateTodo = () => {
     }
     const response = await createTodo(data);
     if(response.status === 201){
-      alert("Todo created");
+      toast.success("Todo created");
       navigate('/');
     }else{
-      alert(response.response.message)
+      toast.error(response.response.data.message)
     }
   }
 
   return (
-    <div className='relative bg-opacity-60 sm:w-5/6 md:w-4/5 md:max-w-100 lg:w-2/4  m-auto text-center sm:border-x-2 border-b-2 border-white rounded-md sm:mt-5 p-3 shadow-2xl shadow-white'>
+    <div className='relative bg-opacity-60 sm:w-5/6 md:w-4/5 md:max-w-100 lg:w-2/4 xl:w-4/12 m-auto text-center sm:border-x-2 border-b-2 border-white rounded-md sm:mt-5 p-3 shadow-2xl shadow-white'>
       <h1 className='text-3xl mb-3 p-3 text-black font-bold shadow-xl'>CREATE TODO</h1>
       <form className='' onSubmit={handleSubmit}>
         <div className='mb-3 my-5 opacity-80'>
@@ -67,7 +68,7 @@ export const CreateTodo = () => {
         </div>
         <div className='mb-3 opacity-80'>
           <textarea name="" id='' cols={30} 
-            maxLength={50} minLength={5}
+            maxLength={50}
             placeholder='Enter description...'
             className='focus:outline-none border-none p-2 rounded w-full bg-blue-200'
             value={description}

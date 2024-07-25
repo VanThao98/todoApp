@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { UserContext } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { updatePassword } from '../api/User';
+import {toast} from 'react-toastify';
 
 export const UpdatePassword = () => {
     const {setUser} = useContext(UserContext);
@@ -14,7 +15,7 @@ export const UpdatePassword = () => {
     const submitHandler = async(e) =>{
         e.preventDefault();
         if(password !== confirmPassword){
-            alert('password does not match');
+            toast.error('password does not match');
             return;
         }
         const data = {
@@ -24,10 +25,10 @@ export const UpdatePassword = () => {
         const response = await updatePassword(data);
         if(response.status === 200) {
           setUser(response.data.user);
-          alert("password updated successfully");
+          toast.success("password updated successfully");
           navigate('/user/profile')
         }else{
-          alert(response.response.data.message);
+          toast.error(response.response.data.message);
         }
     }
     return (

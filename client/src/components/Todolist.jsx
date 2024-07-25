@@ -2,21 +2,37 @@ import React, { useContext, useEffect} from "react";
 import { TodoContext } from "../context/TodoConText";
 import { deleteOneTodo, getAllTodo } from "../api/Todo";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import Swal from 'sweetalert2';
 
 export const Todolist = ({ filterCategory }) => {
   const navigate = useNavigate();
   const { todo, setTodo } = useContext(TodoContext);
 
   const deleteHandle = async (item) => {
-    if (window.confirm("Are you sure?")) {
-      const response = await deleteOneTodo(item._id);
-      if (response.status === 200) {
-        alert(response.data.message);
-        setTodo((prevTodos) => prevTodos.filter((todo) => todo._id !== item._id));
-      } else {
-        alert(response.response.data.message);
+    Swal.fire({
+      title: 'Delete To-do?',
+      // text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await deleteOneTodo(item._id);
+          if (response.status === 200) {
+            toast.success(response.data.message);
+            setTodo((prevTodos) => prevTodos.filter((todo) => todo._id !== item._id));
+          } else {
+            toast.error(response.response.data.message);
+          }
+        } catch (error) {
+          toast.error("An error occurred while deleting the todo.");
+        }
       }
-    }
+    });
   };
 
   useEffect(() => {

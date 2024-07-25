@@ -10,3 +10,98 @@
 .full-width{
   width: 100%;
 }
+
+/* swal css delete*/
+@media only screen and (min-width: 1025px){
+  .swal2-popup {
+    width: 18rem !important;  /* Đặt chiều rộng */
+    height: 5rem !important; /* Đặt chiều cao tự động */
+    font-size: 1rem;       /* Tăng kích thước font chữ */
+    background-color: #000000; /* Đặt màu nền */
+    border-radius: 10px;     /* Bo góc */
+    padding: 0em;            /* Đặt padding */
+    top: -90% !important;      /* Đặt vị trí top center */
+    left: 50% !important;     /* Đặt vị trí center */
+    transform: translate(-50%, -10%) !important; /* Điều chỉnh để căn giữa */
+  }
+}
+.swal2-popup {
+  width: 18rem !important;  /* Đặt chiều rộng */
+  height: 5.5rem !important; /* Đặt chiều cao tự động */
+  font-size: 1rem;       /* Tăng kích thước font chữ */
+  background-color: #000000; /* Đặt màu nền */
+  border-radius: 10px;     /* Bo góc */
+  padding: 0em;            /* Đặt padding */
+  top: -82% !important;      /* Đặt vị trí top center */
+  left: 10% !important;     /* Đặt vị trí center */
+  transform: translate(-50%, -10%) !important; /* Điều chỉnh để căn giữa */
+}
+@media only screen and (max-width: 1024px){
+  .swal2-popup {
+    top: -112% !important;      /* Đặt vị trí top center */
+    left: 20% !important;
+  }
+}
+@media only screen and (max-width: 900px){
+  .swal2-popup {
+    top: -107% !important;      /* Đặt vị trí top center */
+    left: 51% !important;
+  }
+}
+@media only screen and (max-width: 800px){
+  .swal2-popup {
+    top: -109% !important;      /* Đặt vị trí top center */
+  }
+}
+@media only screen and (max-width: 431px){
+  .swal2-popup {
+    top: -96% !important;      /* Đặt vị trí top center */
+    width: 17rem !important;
+    left: 47% !important;
+  }
+}
+@media only screen and (max-width: 360px){
+  .swal2-popup {
+    top: -90% !important; 
+  }
+}
+.swal2-icon {
+  display: none !important;
+  width: 3em !important;   /* Đặt chiều rộng icon */
+  height: 3em !important;  /* Đặt chiều cao icon */
+  font-size: 1em !important; /* Đặt kích thước font của icon */
+}
+
+.swal2-icon svg {
+  width: 3em !important;   /* Đặt chiều rộng SVG icon */
+  height: 3em !important;  /* Đặt chiều cao SVG icon */
+}
+.swal2-actions{
+  margin: 0;
+}
+.swal2-title {
+  color: #ffffff; /* Đặt màu chữ cho tiêu đề */
+  margin-top: -5% !important;
+  font-size: 20px;
+  
+}
+
+.swal2-content {
+  color: #555; /* Đặt màu chữ cho nội dung */
+}
+
+.swal2-confirm {
+  background-color: #3085d6; /* Đặt màu nền cho nút xác nhận */
+  color: white; /* Đặt màu chữ cho nút xác nhận */
+  width: 25%;
+  padding: 2px;
+  
+}
+
+.swal2-cancel {
+  background-color: #d33; /* Đặt màu nền cho nút hủy */
+  color: white; /* Đặt màu chữ cho nút hủy */
+  width: 25%;
+  padding: 2px;
+
+}

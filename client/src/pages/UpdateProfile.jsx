@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { UserContext } from '../context/UserContext'
 import { updateUser } from '../api/User';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export const UpdateProfile = () => {
     const {user, setUser} = useContext(UserContext);
@@ -21,10 +22,10 @@ export const UpdateProfile = () => {
         const response = await updateUser(data);
         if(response.status === 200) {
           setUser(response.data.user);
-          alert("user updated successfully");
+          toast.success("user updated successfully");
           navigate('/user/profile')
         }else{
-          alert(response.response.data.message);
+          toast.error(response.response.data.message);
         }
     }
     return (

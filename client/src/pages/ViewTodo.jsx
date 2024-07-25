@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { getOneTodo } from '../api/Todo';
+import { toast } from 'react-toastify';
 
 export const ViewTodo = () => {
     const [todo, setTodo] = useState('');
@@ -12,7 +13,7 @@ export const ViewTodo = () => {
             if(response.status === 200) {
                 setTodo(response.data.todo);
             }else{
-                alert(response.response.data.message)
+                toast.error(response.response.data.message)
             }
         }
         fetchData();

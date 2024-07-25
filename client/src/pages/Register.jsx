@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { register } from '../api/User';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
+import {toast} from 'react-toastify';
 
 export const Register = () => {
   const [name, setName] = useState('');
@@ -16,7 +17,7 @@ export const Register = () => {
   const submitHandler = async(e) =>{
     e.preventDefault();
     if(password !== confirmPassword){
-      alert('password does not match')
+      toast.error('password does not match')
       return;
     }
     const data = {
@@ -28,10 +29,10 @@ export const Register = () => {
 
     const response = await register(data);
     if(response.status === 201) {
-      alert("user registered successfully");
+      toast.success("user registered successfully");
       navigate('/user/login');
     }else{
-      alert(response.response.data.message);
+      toast.error(response.response.data.message);
     }
   }  
 

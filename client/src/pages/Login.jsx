@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { UserContext } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../api/User';
+import {toast} from 'react-toastify';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
@@ -15,20 +16,24 @@ export const Login = () => {
       email,
       password
     };
-    const response = await login(data);
-    if(response.status === 200){
-      alert('User Logged In');
-      setUser(response.data.user);
-      // const expirationTime = new Date().getTime() + (60 * 60 * 1000);
-      const expirationTime = new Date().getTime() + (60 * 60 * 1000);
-      const token = response.data.token
-      // save Token
-      localStorage.setItem('token', JSON.stringify(token));
-      localStorage.setItem('expirationTime', JSON.stringify(expirationTime));
-      console.log('Token-ngay sau login:', token);
-      navigate('/');
-    }else{
-      alert(response.response.data.message);
+    try{
+      const response = await login(data);
+      if(response.status === 200){
+        toast.success('User Logged In');
+        setUser(response.data.user);
+        // const expirationTime = new Date().getTime() + (60 * 60 * 1000);
+        const expirationTime = new Date().getTime();
+        const token = response.data.token
+        // save Token
+        localStorage.setItem('token', JSON.stringify(token));
+        localStorage.setItem('expirationTime', JSON.stringify(expirationTime));
+        console.log('Token-ngay sau login:', token);
+        navigate('/');
+      }else{
+        toast.error(response.response.data.message);
+      }
+    }catch(error){
+      toast.error('Login failed. Please try again');
     }
   }
 // w-100 mt-0 border-none

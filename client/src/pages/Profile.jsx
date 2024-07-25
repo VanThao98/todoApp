@@ -3,7 +3,8 @@ import { UserContext } from '../context/UserContext'
 import { useNavigate } from 'react-router-dom';
 import { deleteUser, logout } from '../api/User';
 import { TodoContext } from '../context/TodoConText';
-import dayjs from 'dayjs';
+import {toast} from 'react-toastify';
+import Swal from 'sweetalert2';
 
 export const Profile = () => {
   const {user, setUser} = useContext(UserContext);
@@ -13,7 +14,7 @@ export const Profile = () => {
   const logoutHandle= async(e) => {
     const response = await logout();
     if(response.status === 200){
-      alert("User Logged out");
+      toast.success("User Logged out");
       setUser({});
       setTodo({});
       localStorage.removeItem('token');
@@ -22,22 +23,33 @@ export const Profile = () => {
     }
   }
 
-  const deleteHandle = async(e) => {
-    if(window.confirm("Are you sure to destroy your account?")){
-      try {
-        const response = await deleteUser();
-        if(response.status === 200){
-          alert("User is destroyed");
-          setUser({});
-          navigate('/user/login')
-        } else{
-          alert (response.response.data.message);
+  const deleteHandle = async (e) => {
+    Swal.fire({
+      title: 'Destroy account?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await deleteUser();
+          if (response.status === 200) {
+            toast.success("User is destroyed");
+            setUser({});
+            navigate('/user/login');
+          } else {
+            toast.error(response.response.data.message);
+          }
+        } catch (error) {
+          console.log(error);
         }
-      } catch (error) {
-        console.log(error);
       }
-    }
-  }
+    });
+  };
   
   return (
     <div className='sm:w-1/2 md:w-2/3 lg:w-2/4 m-auto text-center'>
